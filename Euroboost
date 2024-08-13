@@ -1,0 +1,38 @@
+def calculate_bets(odds_team_1, odds_team_2, bonus_amount):
+    total_bet_team_1 = 10  # Bet amount on Team 1
+    bonus = bonus_amount  # Bonus if Team 1 wins
+
+    # Calculate the bet amount on Team 2 to ensure no loss
+    # Bet on Team 2 should be such that the worst-case return equals the total bet
+    bet_team_2 = (total_bet_team_1 * odds_team_1 + bonus) / odds_team_2
+
+    # Total amount bet
+    total_bet = total_bet_team_1 + bet_team_2
+
+    # Calculate potential profits
+    profit_team_1 = (total_bet_team_1 * odds_team_1 + bonus) - total_bet
+    profit_team_2 = (bet_team_2 * odds_team_2) - total_bet
+
+    return {
+        "bet_team_1": total_bet_team_1,
+        "bet_team_2": bet_team_2,
+        "profit_team_1": profit_team_1,
+        "profit_team_2": profit_team_2,
+        "total_bet": total_bet
+    }
+
+
+# Example usage
+odds_team_1 = 2.5  # Example odds for Team 1
+odds_team_2 = 1.6  # Example odds for Team 2
+bonus_amount = 10  # Example bonus amount
+
+bets = calculate_bets(odds_team_1, odds_team_2, bonus_amount)
+
+if bets:
+    print(f"Bet on Team 1: {bets['bet_team_1']:.2f} euros")
+    print(f"Bet on Team 2: {bets['bet_team_2']:.2f} euros")
+    print(f"Potential Profit if Team 1 wins: {bets['profit_team_1']:.2f} euros")
+    print(f"Potential Profit if Team 2 wins: {bets['profit_team_2']:.2f} euros")
+else:
+    print("No safe arbitrage opportunity found.")
