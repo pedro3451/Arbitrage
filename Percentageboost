@@ -2,7 +2,7 @@ def calculate_bets_with_percentage_boost(odds_team_1, odds_team_2, percentage_bo
     total_bet_team_1 = 10  # Bet amount on Team 1
 
     # Calculate the potential boosted return for Team 1
-    boosted_return_team_1 = total_bet_team_1 * odds_team_1 * (1 + percentage_boost / 100)
+    boosted_return_team_1 = total_bet_team_1 * odds_team_1 + (total_bet_team_1 * percentage_boost / 100)
 
     # Calculate the bet amount on Team 2 to ensure no loss
     # Bet on Team 2 should be such that the worst-case return equals the total bet
